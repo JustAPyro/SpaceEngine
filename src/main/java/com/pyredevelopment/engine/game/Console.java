@@ -4,25 +4,22 @@ import com.pyredevelopment.engine.messaging.Message;
 import com.pyredevelopment.engine.messaging.MessageBus;
 import com.pyredevelopment.engine.messaging.MessageType;
 
-import java.util.Queue;
 import java.util.Scanner;
 
 public class Console {
 
     private static final boolean LOG_TO_CONSOLE = true;
-    private static Queue<Message> messageQueue;
 
     public static void enterConsole(MessageBus bus) {
         Console.logln("Entering Developer Console:");
         Scanner in = new Scanner(System.in);
-        boolean consoleRunning = true;
-        while (consoleRunning) {
+        while (true) {
             System.out.print("> ");
             String input = in.nextLine();
 
+            // If we're shutting down
             if (input.equalsIgnoreCase("exit")) {
                 bus.close();
-                consoleRunning = false;
                 return;
             }
 

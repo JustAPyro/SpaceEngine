@@ -8,8 +8,7 @@ public class RenderSystem extends SuperSystem {
 
     @Override
     public void startup() {
-        Console.log("Launching Render System... ");
-        Console.logln("Success");
+        Console.logln("(Render) System: Launched");
     }
 
     @Override
@@ -29,9 +28,13 @@ public class RenderSystem extends SuperSystem {
     @Override
     public void handleMessage(Message msg) {
         if (msg.type() == MessageType.SHUTDOWN) {
-            Console.logln("\b\bRender: Shutting down");
+            Console.logln("\b\b(Render) Shutting down");
             Console.log("> ");
             shutdown();
+        }
+        if (msg.type() == MessageType.STATUS) {
+            Console.logln("\b\b(Render) Running");
+            Console.log("> ");
         }
     }
 }

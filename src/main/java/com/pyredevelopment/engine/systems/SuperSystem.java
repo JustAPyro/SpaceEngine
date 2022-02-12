@@ -27,7 +27,9 @@ public abstract class SuperSystem implements Runnable {
 
     public abstract void sendMessage(Message msg);
 
-    public abstract void handleMessage(Message msg);
+    public void handleMessage(Message msg) {
+
+    }
 
     @Override
     public void run() {
