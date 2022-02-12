@@ -6,7 +6,7 @@ public class SuperSystem implements Runnable {
 
     private volatile boolean systemRunning = false;
 
-    private SuperSystem() {
+    public SuperSystem() {
         startup();
         Thread systemThread = new Thread(this);
         systemThread.start();
@@ -17,7 +17,7 @@ public class SuperSystem implements Runnable {
     }
 
     public void systemLoop() {
-        
+
     }
 
     public void sendMessage(Message msg) {
