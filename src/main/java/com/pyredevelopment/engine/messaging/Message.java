@@ -10,6 +10,11 @@ public class Message {
         this.type = type;
     }
 
+    public Message(MessageType type, byte[] data) {
+        this.type = type;
+        this.data = data;
+    }
+
     public MessageType type() {
         return type;
     }

@@ -29,7 +29,9 @@ public abstract class SuperSystem implements Runnable {
 
     public abstract void shutdown();
 
-    public abstract void sendMessage(Message msg);
+    public void sendMessage(Message msg) {
+        messageBus.postMessage(msg);
+    }
 
     public void handleMessage(Message msg) {
         if (msg.type() == MessageType.SHUTDOWN) {
