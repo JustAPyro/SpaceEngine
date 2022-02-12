@@ -3,8 +3,6 @@ package com.pyredevelopment.engine.game;
 import com.pyredevelopment.engine.messaging.MessageBus;
 import com.pyredevelopment.engine.systems.RenderSystem;
 
-import java.util.Scanner;
-
 public class GameEngine {
 
     public static final boolean DEBUG = true;
@@ -12,7 +10,7 @@ public class GameEngine {
     MessageBus messageBus;
 
     public GameEngine() {
-        Console.log("Creating game engine instance...");
+        Console.logln("Creating game engine instance.");
 
         // Create a new message bus
         messageBus = new MessageBus();
@@ -21,7 +19,7 @@ public class GameEngine {
         launchSystems();
 
         // if in debug mode, enter console
-        if (DEBUG) Console.enterConsole();
+        if (DEBUG) Console.enterConsole(messageBus);
 
     }
 
@@ -29,7 +27,7 @@ public class GameEngine {
      * Handles launching all the systems
      */
     private void launchSystems() {
-        Console.log(" - Starting Systems - ");
+        Console.logln("Starting Systems: ");
         messageBus.launch(new RenderSystem());
 
     }

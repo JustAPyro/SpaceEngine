@@ -23,6 +23,8 @@ public abstract class SuperSystem implements Runnable {
 
     public abstract void systemLoop();
 
+    public abstract void shutdown();
+
     public abstract void sendMessage(Message msg);
 
     public abstract void handleMessage(Message msg);
@@ -33,5 +35,9 @@ public abstract class SuperSystem implements Runnable {
         while (systemRunning) {
 
         }
+    }
+
+    protected void close() {
+        systemRunning = false;
     }
 }
