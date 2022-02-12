@@ -31,6 +31,7 @@ public class GameEngine {
     private void launchSystems() {
         Console.logln("Starting Systems: ");
         messageBus.launch(new RenderSystem());
+        messageBus.launch(new InputSystem());
 
     }
 

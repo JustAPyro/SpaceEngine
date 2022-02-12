@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import java.util.HashMap;
 
 /**
  * This is a primarily static class that handles all the back end and JavaFX Thread for the Window object wrappers.
@@ -18,9 +17,6 @@ public class WindowManager extends Application{
     // This is a volatile flag indicating if the JFX toolkit is instantiated
     private static volatile boolean javaFxActive = false;
     private static volatile boolean windowCreated = false;
-
-    // This allows Window objects to pass themselves in to indicate which stage they want to modify
-    private static final HashMap<Stage, Canvas> canvases = new HashMap<>();
 
     private static Scene scene;
 
@@ -53,7 +49,6 @@ public class WindowManager extends Application{
 
             VBox root = new VBox();
             Canvas canvas = new Canvas(500, 500);
-            canvases.put(stage, canvas);
             root.getChildren().add(canvas);
 
             scene = new Scene(root);
@@ -84,6 +79,11 @@ public class WindowManager extends Application{
         // Set the javaFX thread/toolkit to remain open ad set our flag to true
         Platform.setImplicitExit(false);
         javaFxActive = true;
+    }
+
+    public static void end() {
+        Platform.setImplicitExit(true);
+        Platform.exit();
     }
 
 }
