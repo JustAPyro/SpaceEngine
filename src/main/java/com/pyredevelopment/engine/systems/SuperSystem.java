@@ -1,10 +1,13 @@
 package com.pyredevelopment.engine.systems;
 
 import com.pyredevelopment.engine.messaging.Message;
+import com.pyredevelopment.engine.messaging.MessageBus;
 
-public class SuperSystem implements Runnable {
+public abstract class SuperSystem implements Runnable {
 
     private volatile boolean systemRunning = false;
+
+    private MessageBus messageBus;
 
     public SuperSystem() {
         startup();
@@ -12,27 +15,23 @@ public class SuperSystem implements Runnable {
         systemThread.start();
     }
 
-    public void startup() {
-
+    public void link(MessageBus messageBus) {
+        this.messageBus = messageBus;
     }
 
-    public void systemLoop() {
+    public abstract void startup();
 
-    }
+    public abstract void systemLoop();
 
-    public void sendMessage(Message msg) {
+    public abstract void sendMessage(Message msg);
 
-    }
-
-    public void handleMessage(Message msg) {
-
-    }
+    public abstract void handleMessage(Message msg);
 
     @Override
     public void run() {
         systemRunning = true;
         while (systemRunning) {
-            System.out.println("System running!");
+
         }
     }
 }
