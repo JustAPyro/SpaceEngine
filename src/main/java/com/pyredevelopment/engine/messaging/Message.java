@@ -19,4 +19,8 @@ public class Message {
         return type;
     }
 
+    public byte[] data() {
+        return data;
+    }
+
 }

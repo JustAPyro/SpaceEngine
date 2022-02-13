@@ -29,9 +29,12 @@ public abstract class SuperSystem implements Runnable {
 
     public abstract void shutdown();
 
+
     public void sendMessage(Message msg) {
         messageBus.postMessage(msg);
     }
+
+    public void keyUpdate(byte[] update) {};
 
     public void handleMessage(Message msg) {
         if (msg.type() == MessageType.SHUTDOWN) {
@@ -40,8 +43,11 @@ public abstract class SuperSystem implements Runnable {
             shutdown();
         }
         if (msg.type() == MessageType.STATUS) {
-            Console.logln("\b\b(" + systemName + ") Running");
+            Console.logln("\b\b(" + systemName + ") Responding");
             Console.log("> ");
+        }
+        if (msg.type() == MessageType.KEY_UPDATE) {
+            keyUpdate(msg.data());
         }
     }
 
