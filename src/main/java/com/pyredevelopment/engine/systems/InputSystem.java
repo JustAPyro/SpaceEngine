@@ -58,10 +58,10 @@ public class InputSystem extends SuperSystem {
     public static byte[] encodeKeys(HashSet<KeyCode> keySet) {
         byteBuilder.setLength(0);
         byteBuilder.append("+");
-        byteBuilder.append((keySet.contains(KeyCode.W) ? "1" : "0"));
-        byteBuilder.append((keySet.contains(KeyCode.A) ? "1" : "0"));
-        byteBuilder.append((keySet.contains(KeyCode.S) ? "1" : "0"));
-        byteBuilder.append((keySet.contains(KeyCode.D) ? "1" : "0"));
+        byteBuilder.append((keySet.contains(KeyCode.W) ? "0" : "1"));
+        byteBuilder.append((keySet.contains(KeyCode.A) ? "0" : "1"));
+        byteBuilder.append((keySet.contains(KeyCode.S) ? "0" : "1"));
+        byteBuilder.append((keySet.contains(KeyCode.D) ? "0" : "1"));
         byteBuilder.append("000");
         return new byte[]{Byte.parseByte(byteBuilder.toString(), 2)};
 

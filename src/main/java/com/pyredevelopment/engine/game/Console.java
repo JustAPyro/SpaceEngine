@@ -4,6 +4,7 @@ import com.pyredevelopment.engine.messaging.Message;
 import com.pyredevelopment.engine.messaging.MessageBus;
 import com.pyredevelopment.engine.messaging.MessageType;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Console {
@@ -35,6 +36,15 @@ public class Console {
         if (message.equalsIgnoreCase("status"))
             return new Message(MessageType.STATUS);
 
+        if (message.contains("gamestate")) {
+            return new Message(MessageType.EMPTY);
+        }
+
+        return new Message(MessageType.EMPTY);
+    }
+
+    private static Message parseGameState(String string) {
+        char[] characters = string.toCharArray();
         return new Message(MessageType.EMPTY);
     }
 

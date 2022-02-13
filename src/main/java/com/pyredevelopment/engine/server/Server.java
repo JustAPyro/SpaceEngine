@@ -13,32 +13,17 @@ public class Server {
     private static final int PORT_NUMBER = 9875;
     private static DatagramSocket socket;
 
-    public static void main(String[] args) {
-        try {
+    public static void main(String[] args) throws SocketException {
 
-            GameState game = new GameState();
+        ServerListener listener = new ServerListener();
+        Thread t = new Thread(listener);
+        t.start();
 
-            socket = new DatagramSocket(PORT_NUMBER);
-            byte[] buf = new byte[1];
+        GameState game = new GameState();
 
-            while (true) {
-                DatagramPacket packet = new DatagramPacket(buf, buf.length);
-                try {
-                    socket.receive(packet);
-                    InetAddress address = packet.getAddress();
-                    int port = packet.getPort();
-
-                    String inputs = String.format("%07d", Integer.parseInt(Integer.toBinaryString(packet.getData()[0])));
-                    System.out.println(inputs);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-
-        } catch (SocketException e) {
-            e.printStackTrace();
+        while (true) {
+            game.update(listener.getKeys());
         }
+
     }
 }

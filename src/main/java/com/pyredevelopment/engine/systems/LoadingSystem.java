@@ -7,6 +7,8 @@ import com.pyredevelopment.engine.messaging.MessageType;
 public class LoadingSystem extends SuperSystem {
     @Override
     public void startup() {
+        systemName = "Loading";
+
         Console.logln("(Loading) System: Launched");
     }
 
@@ -27,14 +29,6 @@ public class LoadingSystem extends SuperSystem {
 
     @Override
     public void handleMessage(Message msg) {
-        if (msg.type() == MessageType.SHUTDOWN) {
-            Console.logln("\b\b(Loader) Shutting down");
-            Console.log("> ");
-            shutdown();
-        }
-        if (msg.type() == MessageType.STATUS) {
-            Console.logln("\b\b(Loader) Running");
-            Console.log("> ");
-        }
+        super.handleMessage(msg);
     }
 }
