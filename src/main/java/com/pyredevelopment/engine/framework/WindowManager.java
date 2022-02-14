@@ -19,6 +19,7 @@ public class WindowManager extends Application{
     private static volatile boolean windowCreated = false;
 
     private static Scene scene;
+    private static Canvas canvas;
 
     /**
      * This has to be called before any other WindowManager functions can be called,
@@ -48,7 +49,7 @@ public class WindowManager extends Application{
             Stage stage = new Stage();      // Create a new stage
 
             VBox root = new VBox();
-            Canvas canvas = new Canvas(500, 500);
+            canvas = new Canvas(500, 500);
             root.getChildren().add(canvas);
 
             scene = new Scene(root);
@@ -65,6 +66,10 @@ public class WindowManager extends Application{
             Thread.onSpinWait();
 
         return scene;
+    }
+
+    public static Canvas getCanvas() {
+        return canvas;
     }
 
 
