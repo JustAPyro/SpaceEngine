@@ -35,7 +35,7 @@ public class Console {
         if (message.equalsIgnoreCase("status"))
             return new Message(MessageType.STATUS);
 
-        if (message.contains("game-state")) {
+        if (message.contains("gamestate")) {
             return parseGameState(message);
         }
 

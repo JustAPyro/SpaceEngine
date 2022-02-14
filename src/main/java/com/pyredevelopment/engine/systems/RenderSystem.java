@@ -5,15 +5,28 @@ import com.pyredevelopment.engine.game.Console;
 import com.pyredevelopment.engine.messaging.Message;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.nio.ByteBuffer;
 
 public class RenderSystem extends SuperSystem {
+
+    Image ship;
 
     @Override
     public void startup() {
         systemName = "Render";
         Console.logln("(Render) System: Launched");
+        FileInputStream inputStream;
+        try {
+            inputStream = new FileInputStream("src/main/resources/images/ship.png");
+            ship = new Image(inputStream);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
         WindowManager.initialize();
         WindowManager.newWindow();
     }
@@ -45,7 +58,7 @@ public class RenderSystem extends SuperSystem {
         int yVal = ByteBuffer.wrap(second).getInt();
 
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        gc.fillRect(xVal-25, yVal-25, 50, 50);
+        gc.drawImage(ship, xVal-50, yVal-50, 100, 100);
 
     }
 
