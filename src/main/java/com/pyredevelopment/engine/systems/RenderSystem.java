@@ -26,6 +26,11 @@ public class RenderSystem extends SuperSystem {
     }
 
     @Override
+    public void handleGameState(Message msg) {
+        Console.logln("(Render) Adjusting Game-state");
+    }
+
+    @Override
     public void sendMessage(Message msg) {
 
     }

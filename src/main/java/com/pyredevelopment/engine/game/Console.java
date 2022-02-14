@@ -37,15 +37,57 @@ public class Console {
             return new Message(MessageType.STATUS);
 
         if (message.contains("gamestate")) {
-            return new Message(MessageType.EMPTY);
+            return parseGameState(message);
         }
 
         return new Message(MessageType.EMPTY);
     }
 
     private static Message parseGameState(String string) {
-        char[] characters = string.toCharArray();
-        return new Message(MessageType.EMPTY);
+
+        string = string.replaceAll("[^\\d]", " ");
+
+        // Remove extra spaces from the beginning
+        // and the ending of the string
+        string = string.trim();
+
+        // Replace all the consecutive white
+        // spaces with a single space
+        string = string.replaceAll(" +", " ");
+
+        String[] nums = string.split(" ");
+
+        if (nums.length != 2) {
+            logln("Please provide 2 values when using gamestate");
+            return new Message(MessageType.EMPTY);
+        }
+
+        byte[] first = toBytes(Integer.parseInt(nums[0]));
+        byte[] second = toBytes(Integer.parseInt(nums[1]));
+
+        byte[] finalbytes = new byte[8];
+        for (int i = 0; i < 4; i++) {
+            finalbytes[i] = first[i];
+        }
+        for (int i = 4; i < 8; i++) {
+            finalbytes[i] = second[i-4];
+        }
+
+
+
+        return new Message(MessageType.GAME_STATE, finalbytes);
+    }
+
+    private static byte[] toBytes(int i)
+    {
+        byte[] result = new byte[4];
+
+        result[0] = (byte) (i >> 24);
+        result[1] = (byte) (i >> 16);
+        result[2] = (byte) (i >> 8);
+        result[3] = (byte) (i /*>> 0*/);
+
+        return result;
     }
 
     public static void logln(String message) {

@@ -36,7 +36,7 @@ public class NetworkSystem extends SuperSystem {
     }
 
     @Override
-    public void keyUpdate(byte[] update) {
+    public void handleKeyUpdate(byte[] update) {
         buffer = update;
         DatagramPacket packetOut
                 = new DatagramPacket(buffer, buffer.length, address, PORT_NUMBER);

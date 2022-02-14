@@ -34,7 +34,9 @@ public abstract class SuperSystem implements Runnable {
         messageBus.postMessage(msg);
     }
 
-    public void keyUpdate(byte[] update) {};
+    public void handleKeyUpdate(byte[] update) {}
+
+    public void handleGameState(Message msg) {}
 
     public void handleMessage(Message msg) {
         if (msg.type() == MessageType.SHUTDOWN) {
@@ -47,7 +49,10 @@ public abstract class SuperSystem implements Runnable {
             Console.log("> ");
         }
         if (msg.type() == MessageType.KEY_UPDATE) {
-            keyUpdate(msg.data());
+            handleKeyUpdate(msg.data());
+        }
+        if (msg.type() == MessageType.GAME_STATE) {
+            handleGameState(msg);
         }
     }
 
