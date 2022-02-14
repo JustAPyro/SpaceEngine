@@ -4,7 +4,6 @@ import com.pyredevelopment.engine.messaging.Message;
 import com.pyredevelopment.engine.messaging.MessageBus;
 import com.pyredevelopment.engine.messaging.MessageType;
 
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Console {
@@ -36,7 +35,7 @@ public class Console {
         if (message.equalsIgnoreCase("status"))
             return new Message(MessageType.STATUS);
 
-        if (message.contains("gamestate")) {
+        if (message.contains("game-state")) {
             return parseGameState(message);
         }
 
@@ -58,24 +57,20 @@ public class Console {
         String[] nums = string.split(" ");
 
         if (nums.length != 2) {
-            logln("Please provide 2 values when using gamestate");
+            logln("Please provide 2 values when using game-state");
             return new Message(MessageType.EMPTY);
         }
 
         byte[] first = toBytes(Integer.parseInt(nums[0]));
         byte[] second = toBytes(Integer.parseInt(nums[1]));
 
-        byte[] finalbytes = new byte[8];
-        for (int i = 0; i < 4; i++) {
-            finalbytes[i] = first[i];
-        }
-        for (int i = 4; i < 8; i++) {
-            finalbytes[i] = second[i-4];
-        }
+        byte[] finalBytes = new byte[8];
+        System.arraycopy(first, 0, finalBytes, 0, 4);
+        System.arraycopy(second, 0, finalBytes, 4, 4);
 
 
 
-        return new Message(MessageType.GAME_STATE, finalbytes);
+        return new Message(MessageType.GAME_STATE, finalBytes);
     }
 
     private static byte[] toBytes(int i)
