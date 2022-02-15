@@ -69,7 +69,7 @@ public abstract class SuperSystem implements Runnable {
     public void run() {
         systemRunning = true;
         while (systemRunning) {
-
+            systemLoop();
         }
     }
 

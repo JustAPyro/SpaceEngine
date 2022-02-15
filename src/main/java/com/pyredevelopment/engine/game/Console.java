@@ -23,6 +23,12 @@ public class Console {
                 bus.close();
                 return;
             }
+            else if (input.equalsIgnoreCase("quit")) {
+                bus.postMessage(new Message(MessageType.SHUTDOWN));
+                Console.logln("Shutting down Systems and exiting...");
+                bus.close();
+                return;
+            }
 
             bus.postMessage(parseString(input));
 
