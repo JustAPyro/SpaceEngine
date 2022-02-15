@@ -2,8 +2,20 @@ package com.pyredevelopment.engine.framework;
 
 public class DataManagement {
 
-    public static byte toByte(String string) {
-        return Byte.parseByte(string, 2);
+    public static boolean[] toBooleans(byte b) {
+        boolean[] array = new boolean[8];
+        for (int i=0; i<8 ;i++){
+            array[i] = (b & (1 << i)) != 0;
+        }
+        return array;
+    }
+
+    public static byte toByte(boolean[] bits) {
+        if (bits.length != 8)
+            throw new NullPointerException();
+
+        return toByte(bits[0], bits[1], bits[2], bits[3], bits[4], bits[5], bits[6], bits[7]);
+
     }
 
     public static byte toByte(boolean b1, boolean b2, boolean b3, boolean b4,
