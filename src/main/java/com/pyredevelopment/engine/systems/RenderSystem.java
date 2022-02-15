@@ -40,9 +40,9 @@ public class RenderSystem extends SuperSystem {
 
     }
 
-    public void shutdown() {
+    @Override
+    public void cleanup() {
         WindowManager.end();
-        super.close();
     }
 
     @Override

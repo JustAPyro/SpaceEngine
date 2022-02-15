@@ -17,10 +17,6 @@ public class LoadingSystem extends SuperSystem {
 
     }
 
-    @Override
-    public void shutdown() {
-
-    }
 
     @Override
     public void sendMessage(Message msg) {

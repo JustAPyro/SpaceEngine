@@ -27,8 +27,7 @@ public abstract class SuperSystem implements Runnable {
 
     public abstract void systemLoop();
 
-    public abstract void shutdown();
-
+    public void cleanup() {}
 
     public void sendMessage(Message msg) {
         messageBus.postMessage(msg);
@@ -39,6 +38,11 @@ public abstract class SuperSystem implements Runnable {
     public void handleGameState(Message msg) {}
 
     public void handleOpen(Message msg) {}
+
+    private void shutdown() {
+        cleanup();
+        close();
+    }
 
     public void handleMessage(Message msg) {
         if (msg.type() == MessageType.SHUTDOWN) {

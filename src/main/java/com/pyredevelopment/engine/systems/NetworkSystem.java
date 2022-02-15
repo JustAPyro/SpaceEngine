@@ -48,11 +48,6 @@ public class NetworkSystem extends SuperSystem {
     }
 
     @Override
-    public void shutdown() {
-        super.close();
-    }
-
-    @Override
     public void handleMessage(Message msg) {
         super.handleMessage(msg);
 

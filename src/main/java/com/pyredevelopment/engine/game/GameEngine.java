@@ -1,6 +1,7 @@
 package com.pyredevelopment.engine.game;
 
 import com.pyredevelopment.engine.messaging.MessageBus;
+import com.pyredevelopment.engine.systems.GameplaySystem;
 import com.pyredevelopment.engine.systems.InputSystem;
 import com.pyredevelopment.engine.systems.NetworkSystem;
 import com.pyredevelopment.engine.systems.RenderSystem;
@@ -32,7 +33,7 @@ public class GameEngine {
         Console.logln("Starting Systems: ");
         messageBus.launch(new RenderSystem());
         messageBus.launch(new InputSystem());
-        messageBus.launch(new NetworkSystem());
+        messageBus.launch(new GameplaySystem());
 
     }
 

@@ -55,11 +55,6 @@ public class InputSystem extends SuperSystem {
 
     }
 
-    @Override
-    public void shutdown() {
-        super.close();
-    }
-
     public static byte[] encodeKeys(HashSet<KeyCode> keySet) {
         byteBuilder.setLength(0);
         byteBuilder.append("+");
