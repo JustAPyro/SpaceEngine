@@ -3,6 +3,7 @@ package com.pyredevelopment.engine.systems;
 import com.pyredevelopment.engine.framework.WindowManager;
 import com.pyredevelopment.engine.game.Console;
 import com.pyredevelopment.engine.messaging.Message;
+import com.pyredevelopment.engine.messaging.Open;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -60,6 +61,18 @@ public class RenderSystem extends SuperSystem {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         gc.drawImage(ship, xVal-50, yVal-50, 100, 100);
 
+    }
+
+    public void handleOpen(Message msg) {
+        if (msg.data()[0] == Open.MAIN)
+            drawMainMenu();
+    }
+
+    private void drawMainMenu() {
+        Canvas canvas = WindowManager.getCanvas();
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 
     @Override

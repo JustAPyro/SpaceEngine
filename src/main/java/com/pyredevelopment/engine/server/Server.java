@@ -1,6 +1,7 @@
 package com.pyredevelopment.engine.server;
 
 import com.pyredevelopment.engine.game.GameState;
+import javafx.animation.AnimationTimer;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -20,6 +21,12 @@ public class Server {
         t.start();
 
         GameState game = new GameState();
+
+        AnimationTimer tm = new AnimationTimer() {
+            @Override
+            public void handle(long l) {
+            }
+        };
 
         while (true) {
             game.update(listener.getKeys());

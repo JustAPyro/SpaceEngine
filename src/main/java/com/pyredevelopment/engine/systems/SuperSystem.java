@@ -38,6 +38,8 @@ public abstract class SuperSystem implements Runnable {
 
     public void handleGameState(Message msg) {}
 
+    public void handleOpen(Message msg) {}
+
     public void handleMessage(Message msg) {
         if (msg.type() == MessageType.SHUTDOWN) {
             Console.logln("\b\b(" + systemName + ") Shutting down");
@@ -53,6 +55,9 @@ public abstract class SuperSystem implements Runnable {
         }
         if (msg.type() == MessageType.GAME_STATE) {
             handleGameState(msg);
+        }
+        if (msg.type() == MessageType.OPEN) {
+            handleOpen(msg);
         }
     }
 

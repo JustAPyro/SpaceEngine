@@ -3,6 +3,7 @@ package com.pyredevelopment.engine.game;
 import com.pyredevelopment.engine.messaging.Message;
 import com.pyredevelopment.engine.messaging.MessageBus;
 import com.pyredevelopment.engine.messaging.MessageType;
+import com.pyredevelopment.engine.messaging.Open;
 
 import java.util.Scanner;
 
@@ -38,7 +39,18 @@ public class Console {
         if (message.contains("gamestate")) {
             return parseGameState(message);
         }
+        if (message.contains("open")) {
+            return parseOpen(message);
+        }
 
+        return new Message(MessageType.EMPTY);
+    }
+
+    private static Message parseOpen(String string) {
+        if (string.contains("main")) {
+            return new Message(MessageType.OPEN, new byte[]{Open.MAIN});
+        }
+        Console.logln("Unknown OPEN command");
         return new Message(MessageType.EMPTY);
     }
 
