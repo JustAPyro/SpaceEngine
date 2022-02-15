@@ -7,6 +7,9 @@ import com.pyredevelopment.engine.messaging.Open;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -71,8 +74,19 @@ public class RenderSystem extends SuperSystem {
     private void drawMainMenu() {
         Canvas canvas = WindowManager.getCanvas();
         GraphicsContext gc = canvas.getGraphicsContext2D();
+        Font font = Font.loadFont("file:src/main/resources/fonts/menufont.ttf", 35);
+
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+
+        gc.setTextAlign(TextAlignment.CENTER);
+        gc.setFill(Color.AQUA);
+        gc.setFont(font);
+        gc.fillText("NEW GAME", canvas.getWidth()/2, 100);
+        gc.fillText("LOAD GAME", canvas.getWidth()/2, 150);
+        gc.fillText("OPTIONS", canvas.getWidth()/2, 200);
+        gc.fillText("EXIT", canvas.getWidth()/2, 250);
+
     }
 
     @Override
